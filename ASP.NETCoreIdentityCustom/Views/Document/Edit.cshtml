@@ -1,0 +1,110 @@
+﻿@using ASP.NETCoreIdentityCustom.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+@model ASP.NETCoreIdentityCustom.Models.DocumentEntity
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 align="center">EDIT</h1>
+
+<h4 align="center" > You can edit your document here.</h4>
+<hr />
+
+<d class="row">
+       <div class="col-md-4">
+           <section> 
+            <form asp-action="Edit"  enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DocumentId" />
+            <input type="hidden" asp-for="DocumentCreatedDate"/>
+            <input type="hidden" asp-for="UserId"/>
+            <input type="hidden" asp-for="Image1Path" />
+            <input type="hidden" asp-for="Image2Path" />
+            <input type="hidden" asp-for="Image3Path" />
+            <input type="hidden" asp-for="Image4Path" />
+            <input type="hidden" asp-for="Image5Path" />
+
+          
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocumentName" class="control-label"></label>
+                <input asp-for="DocumentName" class="form-control" />
+                <span asp-validation-for="DocumentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocumentCreaterName" class="control-label"></label>
+                <input asp-for="DocumentCreaterName" class="form-control" />
+                <span asp-validation-for="DocumentCreaterName" class="text-danger"></span>
+            </div>
+            <br />
+                <div class="form-group">
+                <label asp-for="DocumentModifiedDate" class="control-label"></label>
+                <input type='text' value='@DateTime.Now.ToString()'/>
+                <span asp-validation-for="DocumentModifiedDate" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="DocumentCreatedDate" class="control-label"></label>
+                @Html.DisplayFor(model => model.DocumentCreatedDate)
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Discription" class="control-label"></label>
+                <textarea rows="7" asp-for="Discription" class="form-control" ></textarea>
+                <span asp-validation-for="Discription" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+               <label asp-for="DocumentFiles" class="control-label"></label>
+               <input multiple asp-for="DocumentFiles" accept="image/*"/>
+               <span asp-validation-for="DocumentFiles" class="text-danger"></span>
+            </div>
+            <Br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-outline-primary" />
+
+            </div>
+            <br />
+             <div>
+             <a asp-action="Index" class="btn btn-outline-danger">Back to List</a>
+            </div>
+        </form>
+        </section>
+     </div>
+     
+    <div class="col-md-6 ">
+        <section>
+                    @if(Model.Image1Path!=null)
+                    {
+                        <img src="@("~/image/"+Model.Image1Path)" asp-append-version="true" width="250px" height="250px" /> 
+                    }
+                    @if(Model.Image2Path!=null)
+                    {
+                        <img src="@("~/image/"+Model.Image2Path)" asp-append-version="true" width="250px" height="250px" /> 
+                    }
+                    @if(Model.Image3Path!=null)
+                    {
+                        <img src="@("~/image/"+Model.Image3Path)" asp-append-version="true" width="250px" height="250px" /> 
+                    }
+                    @if(Model.Image4Path!=null)
+                    {
+                        <img src="@("~/image/"+Model.Image4Path)" asp-append-version="true" width="250px" height="250px" /> 
+                    }
+                    @if(Model.Image5Path!=null)
+                    {
+                        <img src="@("~/image/"+Model.Image5Path)" asp-append-version="true" width="250px" height="250px" /> 
+                    }
+               
+         </section>
+      </div>
+      </div> 
+   
+   
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

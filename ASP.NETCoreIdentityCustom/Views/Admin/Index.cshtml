@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ASP.NETCoreIdentityCustom.Models.DocumentEntity>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="color:black" align="center">View the entire documents / <span style="color:red"> Delete</span></h1>
+<a asp-controller="User" asp-action="Index" class="btn btn-outline-danger">Back to home</a>
+<hr />
+<table class="table" bordercolor="#343a40">
+    <thead>
+        <tr>
+            <th width="200" style="border-right: 1px dashed; border-bottom: 1px dashed;">
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th width="300" style="border-right: 1px dashed; border-bottom: 1px dashed;">
+                @Html.DisplayNameFor(model => model.DocumentName)
+            </th>
+            <th width="300" style="border-right: 1px dashed; border-bottom: 1px dashed;">
+                @Html.DisplayNameFor(model => model.DocumentCreaterName)
+            </th>
+             <th>
+                Edit/Delete
+            </th>
+          
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="table-primary">
+            <td width="200" style="border-right: 1px dashed;">
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td  width="200" style="border-right: 1px dashed;">
+                @Html.DisplayFor(modelItem => item.DocumentName)
+            </td>
+            <td width="200" style="border-right: 1px dashed;">
+                @Html.DisplayFor(modelItem => item.DocumentCreaterName)
+            </td>
+         
+            <td>
+               
+                | <a asp-action="Details" class="btn btn-outline-success" asp-route-id="@item.DocumentId">View Document</a> |
+                | <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.DocumentId"> Delete Documents</a> |
+
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

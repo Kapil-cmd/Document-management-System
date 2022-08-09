@@ -1,0 +1,60 @@
+﻿@using ASP.NETCoreIdentityCustom.Areas.Identity.Data
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@model IEnumerable<ASP.NETCoreIdentityCustom.Entity.Role>
+
+@{
+    ViewData["Title"] = "Requests From The Users";
+}
+
+<h1 align="center">Request Sent By Users For The Role</h1>
+<hr />
+    <p align="center" style="font-style:italic;font-size:larger">Edit the role or Delete the User</p>
+
+    <a asp-controller="User" asp-action="Index" class="btn btn-outline-danger">Back</a>  | 
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequiredRole)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+               <tr class="table-primary">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RequiredRole)
+                    </td>
+
+                    <td>
+
+                        <a asp-controller="User" asp-action="Edit" style="width:80px" class="btn btn-outline-primary" asp-route-id="@item.UserId">Edit</a> 
+                        <hr/>
+                    </td>
+                    <td>
+                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-RowId ="@item.RowId">Delete</a>
+                        <hr/>
+                    </td>
+
+                </tr>
+          }
+    </tbody>
+</table>

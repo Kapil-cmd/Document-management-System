@@ -1,0 +1,32 @@
+﻿@model ASP.NETCoreIdentityCustom.Entity.Role
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Deleting Request</h2>
+
+<h3>Would you like to continue?</h3>
+<div class="container p-3 my-3 border">
+    <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.UserId)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.UserId)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.RequiredRole)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.RequiredRole)
+            </dd>
+        </dl>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="RowId" />
+                <input class="btn btn-primary" type="submit" value="Yes" />
+                <a class="btn btn-danger" asp-action="PostRequest">No</a>
+            </form>
+
+ </div>

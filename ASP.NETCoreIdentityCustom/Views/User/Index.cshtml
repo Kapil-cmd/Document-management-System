@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Users";
+}
+@model  ICollection<ASP.NETCoreIdentityCustom.Areas.Identity.Data.ApplicationUser>
+<div class="text-center">
+    <h1 style="color:darkcyan;font-style:oblique" >Users and their Roles</h1>
+    <h4 style="color:darkcyan"> Edit the roles or <span style="color:red">delete</span> a user!</h4>
+        <a class="btn btn-outline-danger" style="float:left" asp-controller="Home" asp-action="Index"> Back</a>
+         <a class="btn btn-outline-success" asp-controller="RequestRole" asp-action="PostRequest"> Requests</a>
+        <a class="btn btn-outline-warning" style="float:right" asp-controller="Admin" asp-action="Index"> List of All Created Documents</a>
+    @if ( @Model != null && @Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <hr />
+            <tr>
+                <th scope="col" width="500" style="border-right: 1px dashed; border-bottom: 1px dashed;">ID</th>
+                <th scope="col" width="200" style="border-right: 1px dashed; border-bottom: 1px dashed;">First</th>
+                <th scope="col" width="200" style="border-right: 1px dashed; border-bottom: 1px dashed;">Last</th>
+                <th scope="col" width="200" style="border-right: 1px dashed; border-bottom: 1px dashed;">Email</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var user in Model)
+            {
+            <tr class="table-primary">
+                <th scope="row" width="300" style="border-right: 1px dashed;">@user.Id</th>
+                <td width="200" style="border-right: 1px dashed;">@user.FirstName</td>
+                <td width="200" style="border-right: 1px dashed;">@user.LastName</td>
+                <td width="200" style="border-right: 1px dashed;">@user.Email</td>
+                <td>
+                    <div>
+                    <a asp-controller="User" class="btn btn-outline-primary" asp-action="Edit" style="width:80px" asp-route-id="@user.Id">Edit</a>
+
+                 </div>
+                 <br/>
+                    <div>
+                        <form method="post" asp-action="Delete" asp-route-id="@user.Id">
+                   <button type="submit" class="btn btn-outline-danger"  onclick="return confirm('Are you sure you want to delete user : @user.UserName')">Delete</button>
+
+                 </form>
+                    </div>
+                </td>
+            </tr>
+            }
+            </tbody>
+        </table>
+    }
+</div>
+
+<div class="text-center">
+
+</div>

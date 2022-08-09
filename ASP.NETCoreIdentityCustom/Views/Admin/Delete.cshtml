@@ -1,0 +1,72 @@
+﻿@model ASP.NETCoreIdentityCustom.Models.DocumentEntity
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 style="color:red">Delete</h1>
+
+<h3 style="color:black"><span style="color:green">Admin</span> !! Are you sure you want to<span style="color:red"> delete </span>this?</h3>
+<div>
+    <h4>You can <span style="color:red">delete</span> this Document</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2" style="color:black">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10" style="color:black">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2" style="color:black">
+            @Html.DisplayNameFor(model => model.DocumentName)
+        </dt>
+        <dd class = "col-sm-10" style="color:black">
+            @Html.DisplayFor(model => model.DocumentName)
+        </dd>
+        <dt class = "col-sm-2" style="color:black">
+            @Html.DisplayNameFor(model => model.DocumentCreaterName)
+        </dt>
+        <dd class = "col-sm-10" style="color:black">
+            @Html.DisplayFor(model => model.DocumentCreaterName)
+        </dd>
+        <dt class = "col-sm-2" style="color:black">
+            @Html.DisplayNameFor(model => model.Discription)
+        </dt>
+        <dd class = "col-sm-10" style="color:black">
+            @Html.DisplayFor(model => model.Discription)
+        </dd>
+        <dt class = "col-sm-3" style="color:black">
+           Uploaded Image :
+        </dt>
+        <dd class = "col-sm-10">
+             @if(Model.Image1Path!=null)
+                    {
+                        <img src="@("~/image/"+Model.Image1Path)" asp-append-version="true" width="250px" height="250px" /> 
+                    }
+                    @if(Model.Image2Path!=null)
+                    {
+                        <img src="@("~/image/"+Model.Image2Path)" asp-append-version="true" width="250px" height="250px" /> 
+                    }
+                    @if(Model.Image3Path!=null)
+                    {
+                        <img src="@("~/image/"+Model.Image3Path)" asp-append-version="true" width="250px" height="250px" /> 
+                    }
+                    @if(Model.Image4Path!=null)
+                    {
+                        <img src="@("~/image/"+Model.Image4Path)" asp-append-version="true" width="250px" height="250px" /> 
+                    }
+                    @if(Model.Image5Path!=null)
+                    {
+                        <img src="@("~/image/"+Model.Image5Path)" asp-append-version="true" width="250px" height="250px" /> 
+                    }
+          </dd>
+
+     
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="DocumentId" />
+        <input type="submit" value="Delete" class="btn btn-outline-danger" /> |
+        <a asp-action="Index" class="btn btn-outline-danger">Back to List</a>
+    </form>
+</div>

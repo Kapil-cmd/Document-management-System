@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ASP.NETCoreIdentityCustom.Models.DocumentEntity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 align="center">You can start reading documents here</h1>
+<a asp-controller="Home" asp-action="Index"  style="float:left" class="btn btn-outline-danger">Back to home</a>
+@if(User.IsInRole("Administrator"))
+{
+        <a asp-controller="RequestRole" asp-action="PostRequest" style="float:right" class="btn btn-outline-success">Requests</a>
+}
+else
+{
+    <a asp-controller="RequestRole" style="float:right"asp-action="Create" class="btn btn-outline-success">Make a request</a>
+}
+<div  align="center">
+    @using(Html.BeginForm("Index", "RoleViews", FormMethod.Get))
+    {
+      
+    <b> Search Option : </b> @Html.RadioButton("option", "Title") <text> Title </text> @Html.RadioButton("option", "DocumentName") <text>  Document Name </text>  
+    @Html.RadioButton("option", "DocumentCreaterName")<text>  Document Creater Name</text> @Html.TextBox("search") <input type = "submit"  
+    name = "submit"  
+    value = "Search"/>
+      }
+</div>
+ 
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocumentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocumentCreaterName)
+            </th>
+          
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="table-primary">
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumentCreaterName)
+            </td>
+         
+            <td>
+               
+                | <a asp-action="Details" class="btn btn-outline-success" asp-route-id="@item.DocumentId">View Document</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

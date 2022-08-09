@@ -1,0 +1,68 @@
+﻿
+@using Microsoft.AspNetCore.Identity
+@using ASP.NETCoreIdentityCustom.Areas.Identity.Data
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "Home Page";
+}
+   @if (SignInManager.IsSignedIn(User))
+   {
+       <div style="width: 1300px; background-color:ButtonFace;">
+           <marquee direction="left" scrollamount="15"> <h4 class="display-4" align="center">Welcome To Document Management System</h4></marquee>
+      </div
+      <div >
+          <img src="~/Image/6810534.jpg" asp-append-version="true" width="1300px" height="750px"/>
+      </div>
+   }
+   else
+   {
+       <hr />
+       <br />
+       <div class="row">
+    <div class="col-md-6 col-md-offset-2">  
+        <section>
+     <img src="~/Image/aa.jpg" asp-append-version="true" width="600px" height="550px"/>
+
+        </section>
+        <hr/>
+    </div>
+    <div class="col-md-6 ">
+        <section>
+                  <h3 >Welcome To Document Management System.</h3>
+                  <hr/>
+           
+            <hr />
+        
+                    <div align="center">
+                        <p >
+                          You have to Login/SignUp to get access to the Document Management System. after the registration you can login to the system.After Login you are able to get access to the Document Management System and can read the Document First and you can get different roles where you can read,Create and edit your documents.
+                        </p>
+                    </div>
+                    <hr/>
+                    
+
+        </section>
+        <p> You can register Your Account Here</p>
+                   <li class="active">
+        <a class="btn btn-outline-primary " id="login" asp-area="Identity" style="width:500px;height:50px" asp-page="/Account/Register">
+ Register
+</a>
+    </li>
+             <hr/>   
+             <p> After Registeration You Can Login</p>
+             <li class="active">
+        <a class="btn btn-outline-success " id="login" asp-area="Identity" style="width:500px;height:50px" asp-page="/Account/Login">
+ Login
+</a>
+    </li>
+    </div>
+   
+</div>
+ <div align="center">
+                <div style="width: 1200px; background-color:aliceblue;">
+           <marquee direction="left"> <h4 class="display-4" style="color:ActiveBorder" > Welcome To Document Management System  </h4></marquee>
+      </div
+            </div>
+            <hr />
+   }
